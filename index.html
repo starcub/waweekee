@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Waweekee</title>
+	<style type="text/css">
+    a.wikiLink {position:relative;}
+    a.wikiLink span {display:none;text-decoration:none;} 
+    a.wikiLink:hover .tip_info {z-index:999;display:block;border:1px solid #F96;background:#FFEFEF;padding:10px 20px;position:absolute;top:0px;left:90px;color:#009933;width:200px} 
+	</style>
+	<script src="http://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+     google.load("jquery", "1.4.2");
+ 	</script>
+	<script type="text/javascript">
+		var g_id = 0;
+		function submit()	{
+      content = $("#content1").val();
+      splitContent = $("#content1").val().replace(new RegExp('[ !@#$%^&*()_+:";?><|\\\'\\[\\],./]', 'gi'), ' '); 
+			$.ajax({
+        type: "POST",
+        url: "/wikify",
+        data: {content: content, splitContent: splitContent},
+        success:function(response, textStatus) {$("#output").html(response);},
+        error:function (xhr, ajaxOptions, thrownError){
+                    alert(xhr.responseText);
+                },
+        complete: function(xhr, textStatus) {
+              $("#submit_content").val("Wikify");
+              $("#submit_content").removeAttr("disabled");
+        }
+      });
+
+		}
+		$(document).ready(  
+         function() {  
+             $("#submit_content").click(function(){
+              $("#submit_content").val("Wikifying... Please wait...");
+              $('#submit_content').attr("disabled", true);
+              submit();});
+         }
+    );
+    $('input').click(function(){
+     
+    });
+	</script>
+</head>
+<body>
+	<div id="input">
+		<div><textarea id="content1" rows="8" cols="100">The Terracotta Army is the TerraCotta Warriors and Horses of Qin Shi Huang the First Emperor of China. The Terracotta figures, dating from 210 BC, were discovered in 1974 by some local farmers near Xian, Shaanxi province, China near the Mausouleum of the First Qin Emperor. The figures vary in height, according to their role, the tallest being the generals. The figures include warriors, chariots, horses, officials, acrobats, strongmen, and musicians. Current estimates are that in the three pits containing the Terracotta Army there were over 8,000 soldiers, 130 chariots with 520 horses and 150 cavalry horses, the majority of which are still buried in the pits. Many archeologists believe that there are Many pits still waiting to be discovered.</textarea></div>  
+    <div class="top1em"><input type="submit" value="Wikify" id="submit_content" /><br /><br /></div>
+  </div>
+  <div id="output" style="max-width:860px">
+        
+  </div>
+</body>
+</html>
