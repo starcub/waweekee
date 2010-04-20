@@ -105,7 +105,7 @@ class Ngram(webapp.RequestHandler):
         self.response.out.write('quadgram:<pre>')
         self.response.out.write(gram4)
         self.response.out.write('</pre>')
-        self.response.out.write('<h1>Stripped Punctuations and Stop words</h1>')
+        self.response.out.write('<h1>Stripped</h1>')
         self.response.out.write('unigram:<pre>')
         self.response.out.write(self.stripStopwords(self.stripPunctuation(gram1)))
         self.response.out.write('</pre>')
