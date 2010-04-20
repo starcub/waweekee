@@ -11,6 +11,7 @@
 	<script src="http://www.google.com/jsapi"></script>
 	<script type="text/javascript">
      google.load("jquery", "1.4.2");
+     google.load("jqueryui", "1.8.0");
  	</script>
 	<script type="text/javascript">
 		var g_id = 0;
@@ -28,6 +29,7 @@
         complete: function(xhr, textStatus) {
               $("#submit_content").val("Wikify");
               $("#submit_content").removeAttr("disabled");
+              $('#output').effect("highlight", {}, 3000);
         }
       });
 
@@ -47,9 +49,14 @@
 </head>
 <body>
 	<div id="input">
-		<div><textarea id="content1" rows="8" cols="100">The Terracotta Army is the TerraCotta Warriors and Horses of Qin Shi Huang the First Emperor of China. The Terracotta figures, dating from 210 BC, were discovered in 1974 by some local farmers near Xian, Shaanxi province, China near the Mausouleum of the First Qin Emperor. The figures vary in height, according to their role, the tallest being the generals. The figures include warriors, chariots, horses, officials, acrobats, strongmen, and musicians. Current estimates are that in the three pits containing the Terracotta Army there were over 8,000 soldiers, 130 chariots with 520 horses and 150 cavalry horses, the majority of which are still buried in the pits. Many archeologists believe that there are Many pits still waiting to be discovered.</textarea></div>  
-    <div class="top1em"><input type="submit" value="Wikify" id="submit_content" /><br /><br /></div>
-  </div>
+		<form action="/ngram" method="post">
+		<div><textarea name="content1" id="content1" rows="8" cols="100">The Terracotta Army is the TerraCotta Warriors and Horses of Qin Shi Huang the First Emperor of China. The Terracotta figures, dating from 210 BC, were discovered in 1974 by some local farmers near Xian, Shaanxi province, China near the Mausouleum of the First Qin Emperor. The figures vary in height, according to their role, the tallest being the generals. The figures include warriors, chariots, horses, officials, acrobats, strongmen, and musicians. Current estimates are that in the three pits containing the Terracotta Army there were over 8,000 soldiers, 130 chariots with 520 horses and 150 cavalry horses, the majority of which are still buried in the pits. Many archeologists believe that there are Many pits still waiting to be discovered.</textarea></div>  
+		<div class="top1em">
+			<input type="button" value="Wikify" id="submit_content" /> &nbsp;
+			<input type="submit" value="Ngram" id="ngram_content" /> <br /><br />
+		</div>
+		</form>
+	</div>
   <div id="output" style="max-width:860px">
         
   </div>
